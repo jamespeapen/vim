@@ -2,8 +2,8 @@
 " Language: i3 config file
 " Original Author: Mohamed Boughaba <mohamed dot bgb at gmail dot com>
 " Maintainer: Quentin Hibon (github user hiqua)
-" Version: 0.4
-" Last Change: 2022 Jun 05
+" Version: 0.5
+" Last Change: 2023 Mar 28
 
 " References:
 " http://i3wm.org/docs/userguide.html#configuring
@@ -26,6 +26,9 @@ syn keyword i3ConfigTodo TODO FIXME XXX contained
 " Comment
 " Comments are started with a # and can only be used at the beginning of a line
 syn match i3ConfigComment /^\s*#.*$/ contains=i3ConfigTodo
+
+" yes no
+syn keyword i3ConfigYesNoType yes no contained
 
 " Font
 " A FreeType font description is composed by:
@@ -143,8 +146,7 @@ syn match i3ConfigMouseWarping /^\s*mouse_warping\s\+\(output\|none\)\s\?$/ cont
 
 " Focus follows mouse
 syn keyword i3ConfigFocusFollowsMouseKeyword focus_follows_mouse contained
-syn keyword i3ConfigFocusFollowsMouseType yes no contained
-syn match i3ConfigFocusFollowsMouse /^\s*focus_follows_mouse\s\+\(yes\|no\)\s\?$/ contains=i3ConfigFocusFollowsMouseKeyword,i3ConfigFocusFollowsMouseType
+syn match i3ConfigFocusFollowsMouse /^\s*focus_follows_mouse\s\+\(yes\|no\)\s\?$/ contains=i3ConfigFocusFollowsMouseKeyword,i3ConfigYesNoType
 
 " Popups during fullscreen mode
 syn keyword i3ConfigPopupOnFullscreenKeyword popup_during_fullscreen contained
@@ -153,21 +155,20 @@ syn match i3ConfigPopupOnFullscreen /^\s*popup_during_fullscreen\s\+\w\+\s\?$/ c
 
 " Focus wrapping
 syn keyword i3ConfigFocusWrappingKeyword force_focus_wrapping focus_wrapping contained
-syn keyword i3ConfigFocusWrappingType yes no contained
-syn match i3ConfigFocusWrapping /^\s*\(force_\)\?focus_wrapping\s\+\(yes\|no\)\s\?$/ contains=i3ConfigFocusWrappingType,i3ConfigFocusWrappingKeyword
+syn match i3ConfigFocusWrapping /^\s*\(force_\)\?focus_wrapping\s\+\(yes\|no\)\s\?$/ contains=i3ConfigYesNoType,i3ConfigFocusWrappingKeyword
 
 " Forcing Xinerama
 syn keyword i3ConfigForceXineramaKeyword force_xinerama contained
-syn match i3ConfigForceXinerama /^\s*force_xinerama\s\+\(yes\|no\)\s\?$/ contains=i3ConfigFocusWrappingType,i3ConfigForceXineramaKeyword
+syn match i3ConfigForceXinerama /^\s*force_xinerama\s\+\(yes\|no\)\s\?$/ contains=i3ConfigYesNoType,i3ConfigForceXineramaKeyword
 
 " Automatic back-and-forth when switching to the current workspace
 syn keyword i3ConfigAutomaticSwitchKeyword workspace_auto_back_and_forth contained
-syn match i3ConfigAutomaticSwitch /^\s*workspace_auto_back_and_forth\s\+\(yes\|no\)\s\?$/ contains=i3ConfigFocusWrappingType,i3ConfigAutomaticSwitchKeyword
+syn match i3ConfigAutomaticSwitch /^\s*workspace_auto_back_and_forth\s\+\(yes\|no\)\s\?$/ contains=i3ConfigYesNoType,i3ConfigAutomaticSwitchKeyword
 
 " Delay urgency hint
 syn keyword i3ConfigTimeUnit ms contained
 syn keyword i3ConfigDelayUrgencyKeyword force_display_urgency_hint contained
-syn match i3ConfigDelayUrgency /^\s*force_display_urgency_hint\s\+\d\+\s\+ms\s\?$/ contains=i3ConfigFocusWrappingType,i3ConfigDelayUrgencyKeyword,i3ConfigNumber,i3ConfigTimeUnit
+syn match i3ConfigDelayUrgency /^\s*force_display_urgency_hint\s\+\d\+\s\+ms\s\?$/ contains=i3ConfigYesNoType,i3ConfigDelayUrgencyKeyword,i3ConfigNumber,i3ConfigTimeUnit
 
 " Focus on window activation
 syn keyword i3ConfigFocusOnActivationKeyword focus_on_window_activation contained
@@ -176,14 +177,14 @@ syn match i3ConfigFocusOnActivation /^\s*focus_on_window_activation\s\+\(smart\|
 
 " Automatic back-and-forth when switching to the current workspace
 syn keyword i3ConfigDrawingMarksKeyword show_marks contained
-syn match i3ConfigDrawingMarks /^\s*show_marks\s\+\(yes\|no\)\s\?$/ contains=i3ConfigFocusWrappingType,i3ConfigDrawingMarksKeyword
+syn match i3ConfigDrawingMarks /^\s*show_marks\s\+\(yes\|no\)\s\?$/ contains=i3ConfigYesNoType,i3ConfigDrawingMarksKeyword
 
 " Group mode/bar
 syn keyword i3ConfigBlockKeyword mode bar colors i3bar_command status_command position exec mode hidden_state modifier id position output background statusline tray_output tray_padding separator separator_symbol workspace_min_width workspace_buttons strip_workspace_numbers binding_mode_indicator focused_workspace active_workspace inactive_workspace urgent_workspace binding_mode contained
-syn region i3ConfigBlock start=+^\s*[^#]*s\?{$+ end=+^\s*[^#]*}$+ contains=i3ConfigBlockKeyword,i3ConfigString,i3ConfigBind,i3ConfigComment,i3ConfigFont,i3ConfigFocusWrappingType,i3ConfigColor,i3ConfigVariable transparent keepend extend
+syn region i3ConfigBlock start=+^\s*[^#]*s\?{$+ end=+^\s*[^#]*}$+ contains=i3ConfigBlockKeyword,i3ConfigString,i3ConfigBind,i3ConfigComment,i3ConfigFont,i3ConfigYesNoType,i3ConfigColor,i3ConfigVariable transparent keepend extend
 
 " Line continuation
-syn region i3ConfigLineCont start=/^.*\\$/ end=/^.*$/ contains=i3ConfigBlockKeyword,i3ConfigString,i3ConfigBind,i3ConfigComment,i3ConfigFont,i3ConfigFocusWrappingType,i3ConfigColor,i3ConfigVariable transparent keepend extend
+syn region i3ConfigLineCont start=/^.*\\$/ end=/^.*$/ contains=i3ConfigBlockKeyword,i3ConfigString,i3ConfigBind,i3ConfigComment,i3ConfigFont,i3ConfigYesNoType,i3ConfigColor,i3ConfigVariable transparent keepend extend
 
 " Define the highlighting.
 hi def link i3ConfigError                           Error
@@ -194,7 +195,6 @@ hi def link i3ConfigFocusOnActivationType           Type
 hi def link i3ConfigPopupOnFullscreenType           Type
 hi def link i3ConfigOrientationKeyword              Type
 hi def link i3ConfigMouseWarpingType                Type
-hi def link i3ConfigFocusFollowsMouseType           Type
 hi def link i3ConfigGapStyleKeyword                 Type
 hi def link i3ConfigTitleAlignKeyword               Type
 hi def link i3ConfigSmartGapKeyword                 Type
@@ -206,7 +206,7 @@ hi def link i3ConfigAction                          Type
 hi def link i3ConfigCommand                         Type
 hi def link i3ConfigOutput                          Type
 hi def link i3ConfigWindowCommandSpecial            Type
-hi def link i3ConfigFocusWrappingType               Type
+hi def link i3ConfigYesNoType                       Type
 hi def link i3ConfigUnitOr                          Type
 hi def link i3ConfigFontSize                        Constant
 hi def link i3ConfigColor                           Constant
