@@ -2,9 +2,9 @@
 " Language: sway window manager config
 " Original Author: James Eapen <james.eapen@vai.org>
 " Maintainer: James Eapen <james.eapen@vai.org>
-" Version: 0.2.1
-" Reference version (jamespeapen/swayconfig.vim): 0.12.1
-" Last Change: 2023 Mar 20
+" Version: 0.2.2
+" Reference version (jamespeapen/swayconfig.vim): 0.12.2
+" Last Change: 2023 Mar 28
 
 " References:
 " http://i3wm.org/docs/userguide.html#configuring
@@ -78,8 +78,8 @@ syn match swayConfigMouseWarping /^\s*mouse_warping\s\+\(output\|container\|none
 syn clear i3ConfigFocusFollowsMouseType
 syn clear i3ConfigFocusFollowsMouse
 
-syn keyword swayConfigFocusFollowsMouseType yes no always contained
-syn match swayConfigFocusFollowsMouse /^\s*focus_follows_mouse\s\+\(yes\|no\|always\)\s\?$/ contains=i3ConfigFocusFollowsMouseKeyword,swayConfigFocusFollowsMouseType
+syn keyword swayConfigFocusFollowsMouseType always contained
+syn match swayConfigFocusFollowsMouse /^\s*focus_follows_mouse\s\+\(yes\|no\|always\)\s\?$/ contains=i3ConfigFocusFollowsMouseKeyword,i3ConfigYesNoType,swayConfigFocusFollowsMouseType
 
 
 " xwayland 
