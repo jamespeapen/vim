@@ -75,11 +75,10 @@ syn keyword swayConfigMouseWarpingType container contained
 syn match swayConfigMouseWarping /^\s*mouse_warping\s\+\(output\|container\|none\)\s\?$/ contains=i3ConfigMouseWarpingKeyword,i3ConfigMouseWarpingType,swayConfigMouseWarpingType
 
 " focus follows mouse
-syn clear i3ConfigFocusFollowsMouseType
 syn clear i3ConfigFocusFollowsMouse
 
 syn keyword swayConfigFocusFollowsMouseType always contained
-syn match swayConfigFocusFollowsMouse /^\s*focus_follows_mouse\s\+\(yes\|no\|always\)\s\?$/ contains=i3ConfigFocusFollowsMouseKeyword,i3ConfigYesNoType,swayConfigFocusFollowsMouseType
+syn match swayConfigFocusFollowsMouse /^\s*focus_follows_mouse\s\+\(yes\|no\|always\)\s\?$/ contains=i3ConfigFocusFollowsMouseKeyword,i3ConfigYesNoType,swayConfigFocusFollowsMouse
 
 
 " xwayland 
