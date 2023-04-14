@@ -2,9 +2,9 @@
 " Language: sway window manager config
 " Original Author: James Eapen <james.eapen@vai.org>
 " Maintainer: James Eapen <james.eapen@vai.org>
-" Version: 0.2.2
-" Reference version (jamespeapen/swayconfig.vim): 0.12.2
-" Last Change: 2023 Mar 28
+" Version: 0.2.3
+" Reference version (jamespeapen/swayconfig.vim): 0.12.4
+" Last Change: 2023 April 14
 
 " References:
 " http://i3wm.org/docs/userguide.html#configuring
@@ -88,7 +88,7 @@ syn match swayConfigXwaylandModifier /^\s*xwayland\s\+\(enable\|disable\|force\)
 
 " Group mode/bar
 syn clear i3ConfigBlock
-syn region swayConfigBlock start=+.*s\?{$+ end=+^}$+ contains=i3ConfigBlockKeyword,i3ConfigString,i3ConfigBind,i3ConfigInitializeKeyword,i3ConfigComment,i3ConfigFont,i3ConfigFocusWrappingType,i3ConfigColor,i3ConfigVariable,swayConfigInputKeyword,swayConfigSeatKeyword,i3ConfigOutput transparent keepend extend
+syn region swayConfigBlock start=+.*s\?{$+ end=+^}$+ contains=i3ConfigBlockKeyword,i3ConfigString,i3ConfigBind,i3ConfigInitializeKeyword,i3ConfigComment,i3ConfigFont,i3ConfigFocusWrappingKeyword,i3ConfigColor,i3ConfigVariable,swayConfigInputKeyword,swayConfigSeatKeyword,i3ConfigOutput transparent keepend extend
 
 "hi def link swayConfigError                         Error
 hi def link i3ConfigFloating                        Error

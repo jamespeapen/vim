@@ -2,8 +2,8 @@
 " Language: i3 config file
 " Original Author: Mohamed Boughaba <mohamed dot bgb at gmail dot com>
 " Maintainer: Quentin Hibon (github user hiqua)
-" Version: 0.5
-" Last Change: 2023 Mar 28
+" Version: 0.5.1
+" Last Change: 2023 April 14
 
 " References:
 " http://i3wm.org/docs/userguide.html#configuring
@@ -154,8 +154,9 @@ syn keyword i3ConfigPopuponFullscreenType smart ignore leave_fullscreen containe
 syn match i3ConfigPopupOnFullscreen /^\s*popup_during_fullscreen\s\+\w\+\s\?$/ contains=i3ConfigPopupOnFullscreenKeyword,i3ConfigPopupOnFullscreenType
 
 " Focus wrapping
-syn keyword i3ConfigFocusWrappingKeyword force_focus_wrapping focus_wrapping contained
-syn match i3ConfigFocusWrapping /^\s*\(force_\)\?focus_wrapping\s\+\(yes\|no\)\s\?$/ contains=i3ConfigYesNoType,i3ConfigFocusWrappingKeyword
+syn keyword i3ConfigFocusWrappingKeyword focus_wrapping contained
+syn keyword i3ConfigFocusWrappingType force workspace contained
+syn match i3ConfigFocusWrapping /^\s*focus_wrapping\s\+\(yes\|no\|force\|workspace\)\s\?$/ contains=i3ConfigFocusWrappingKeyword,i3ConfigYesNoType,i3ConfigFocusWrappingType
 
 " Forcing Xinerama
 syn keyword i3ConfigForceXineramaKeyword force_xinerama contained
@@ -208,6 +209,7 @@ hi def link i3ConfigOutput                          Type
 hi def link i3ConfigWindowCommandSpecial            Type
 hi def link i3ConfigYesNoType                       Type
 hi def link i3ConfigUnitOr                          Type
+hi def link i3ConfigFocusWrappingType               Type
 hi def link i3ConfigFontSize                        Constant
 hi def link i3ConfigColor                           Constant
 hi def link i3ConfigNumber                          Constant
