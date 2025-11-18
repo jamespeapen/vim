@@ -19,9 +19,22 @@ endif
 " before i3 load to give i3ConfigKeyword lower priority
 syn cluster i3ConfigCommand contains=i3ConfigCommand,i3ConfigAction,i3ConfigActionKeyword,@i3ConfigValue,i3ConfigColor,i3ConfigKeyword
 
+
 runtime! syntax/i3config.vim
 
 " Sway extensions to i3
+
+"" Extend certain keywords into regions to support block syntax
+syn region swayConfigCriteriaBlock start=/\[/ skip=/\\$/ end=/$/ contained contains=i3ConfigCondition,@i3ConfigCommand,i3ConfigSeparator extend
+
+syn region swayConfigNoFocusBlock matchgroup=i3ConfigKeyword start=/no_focus\s\+{$/ end=/^\s*}$/ contains=i3ConfigCondition keepend fold
+
+syn region swayConfigAssignBlock matchgroup=i3ConfigKeyword start=/assign\s\+{$/ end=/^\s*}$/ contains=i3ConfigCriteria,i3ConfigSeparator,@i3ConfigIdent,@i3ConfigColVar keepend fold
+
+syn region swayConfigWindowBlock matchgroup=i3ConfigKeyword start=/for_window\s\+{$/ end=/^\s*}$/ contains=swayConfigCriteriaBlock keepend fold
+
+"" Extend keywords
+
 syn keyword i3ConfigActionKeyword opacity urgent shortcuts_inhibitor splitv splith splitt contained contained skipwhite nextgroup=i3ConfigOption
 syn keyword i3ConfigOption set plus minus allow deny csd v h t contained contained skipwhite nextgroup=i3ConfigOption,@i3ConfigValue
 
